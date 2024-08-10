@@ -11,6 +11,7 @@ const buttonVarients = cva(
             varient: {
                 default: 'bg-gray-200 text-black/50 ',
                 secondary:'border shadow-md  border-black/30',
+               
                 dark:"bg-dark text-white rounded",
                 primary:"bg-primary text-white rounded-md"
                 
