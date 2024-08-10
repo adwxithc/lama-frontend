@@ -1,15 +1,25 @@
-import { Outlet } from "react-router-dom"
-import Navbar from "./Navbar"
+import { Navigate, Outlet, useLocation } from "react-router-dom"
+import { RootState } from "../../redux/store"
+import Modal from "../ui/Modal"
+import Login from "../Login"
+import { useSelector } from "react-redux"
 
 function UserLayout() {
+  const { isAuth } = useSelector((state: RootState) => state.user)
+  const location = useLocation()
   return (
-    <div className="">
-        <Navbar />
-        <div className="container w-[85vw] mx-auto">
-        <Outlet />
-        </div>
-        
-    </div>
+    <>
+    
+      {isAuth || location.pathname =='/'? <Outlet />: <Navigate to='/' />}
+    
+      {
+        !isAuth &&
+        <Modal >
+          <Login />
+        </Modal>
+      }
+
+    </>
   )
 }
 
