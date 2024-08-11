@@ -16,7 +16,7 @@ const userRoutes = createBrowserRouter([
                 Component:LandingPage
             },
             {
-                path:'/project/:name',
+                path:'/project/:projectId',
                 Component:SingleProject,
                 children:[
                     {

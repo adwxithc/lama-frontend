@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { ILoginformValue, loginSchema } from '../schema/userSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MoonLoader } from 'react-spinners';
-import { useLoginMutation } from '../redux/feature/useApiSlice';
+import { useLoginMutation } from '../redux/feature/userApiSlice';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { setCridentials } from '../redux/feature/userSlice';

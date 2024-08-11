@@ -2,7 +2,7 @@ import { House } from "lucide-react"
 import Button from "../components/ui/Button"
 import CreateNewProject from "../components/CreateNewProject"
 import Navbar from "../components/layout/Navbar"
-import { useGetProjectsQuery } from "../redux/feature/useApiSlice"
+import { useGetProjectsQuery } from "../redux/feature/userApiSlice"
 import { Fragment, useEffect, useState } from "react"
 import { IProject } from "../types/data"
 import PaginationButtons from "../components/ui/PaginationButton"
@@ -24,8 +24,8 @@ function LandingPage() {
 
     useEffect(()=>{
        
-        setProjects(data?.data?.projects||[])
-    },[data?.data?.lastPage, data?.data?.projects, page])
+        setProjects(data?.data?.items||[])
+    },[data?.data?.lastPage, data?.data?.items, page])
 
     return (
         <>

@@ -7,7 +7,7 @@ import Button from './ui/Button'
 import Modal from './ui/Modal'
 import { Input } from './ui/Input'
 import { projectSchema } from '../schema/projectSchema';
-import { useCreateProjectMutation } from '../redux/feature/useApiSlice';
+import { useCreateProjectMutation } from '../redux/feature/userApiSlice';
 import { isHttpError } from '../utils/error-utils';
 import toast from 'react-hot-toast';
 import { MoonLoader } from 'react-spinners';

@@ -20,12 +20,22 @@ export interface IEpisode{
     description:string,
     createdAt:string,
     updatedAt:string,
-    method: 'youtube'|'spotify'|'RSS'
+    method:'youtube'|'spotify'| 'rss'
 }
 
 export interface IResponse<T>{
     success:boolean,
     data?:T,
+    message?:string
+ }
+
+ export interface IPaginatedResponse<T>{
+    success:boolean,
+    data:{
+        lastPage:number,
+        totalPages:number,
+        items:T[]
+    },
     message?:string
  }
 
@@ -35,4 +45,17 @@ export interface IResponse<T>{
   data:{
       errors:{field?:string,message:string}[]
   }
+}
+
+export interface ICreateEpisode{
+    name:string,
+    description:string,
+    projectId:string,
+    method:'youtube'|'spotify'| 'rss'
+}
+
+export interface IUploadOptions{
+    icon:string,
+    title:string,
+    method:'youtube'|'spotify'|'rss'
 }

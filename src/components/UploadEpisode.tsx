@@ -5,6 +5,11 @@ import { useForm } from "react-hook-form"
 import { episodeSchema } from "../schema/projectSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { TextArea } from "./ui/TextArea"
+import { useParams } from "react-router-dom"
+import { useAddEpisodeMutation } from "../redux/feature/userApiSlice"
+import { isHttpError } from "../utils/error-utils"
+import toast from "react-hot-toast"
+import { MoonLoader } from "react-spinners"
 
 interface IEpisodesForm{
     name:string,
@@ -14,26 +19,44 @@ interface IEpisodesForm{
 interface UploadEpisodeProps {
     icon: string
     title: string,
+    method:'youtube'|'spotify'| 'rss'
     closeModal: () => void
 }
 
-function UploadEpisode({ icon, title, closeModal }: UploadEpisodeProps) {
+function UploadEpisode({ icon, title,method, closeModal }: UploadEpisodeProps) {
 
+    const  [addEpisode,{isLoading}] =useAddEpisodeMutation()
+    const { projectId='' } = useParams(); 
     const methods = useForm<IEpisodesForm>({
         mode: 'onChange',
         resolver: zodResolver(episodeSchema), // zod resolver for form validation
     });
 
-    const { register, handleSubmit, formState } = methods;
+    const { register, handleSubmit, formState, reset, setError } = methods;
     const { errors } = formState
 
-    const onSubmit =(data:IEpisodesForm)=>{
-        
+    const onSubmit =async (data:IEpisodesForm)=>{
+        try {
+            await addEpisode({...data,method,projectId})
+            handleCloseModal()
+        } catch (error) {
+            if (isHttpError(error) && error.status == 400) {
+                setError('name', { message: error.data.errors[0]?.message })       
+            } else {
+                toast.error('something went wrong');
+            }
+            
+        }
+    }
+
+    const handleCloseModal = ()=>{
+        reset()
+        closeModal()
     }
 
     return (
         <div className="p-3">
-            <p className="flex justify-end"><X className="cursor-pointer" onClick={closeModal} /></p>
+            <p className="flex justify-end"><X className="cursor-pointer" onClick={handleCloseModal} /></p>
             <div className="flex items-center gap-2 text-2xl capitalize font-semibold mb-3">
                 <img width={40} height={40} src={icon} alt={title} />
                 <h2>{title}</h2>
@@ -51,7 +74,7 @@ function UploadEpisode({ icon, title, closeModal }: UploadEpisodeProps) {
 
 
                 <div className="flex justify-end">
-                    <Button varient={'primary'} size={'md'}>Save</Button>
+                    <Button disabled={isLoading} varient={'primary'} size={'md'}>{isLoading?<MoonLoader size={20} color='white' />:'Save'}</Button>
                 </div>
             </form>
 

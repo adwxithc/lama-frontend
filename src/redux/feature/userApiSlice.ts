@@ -1,5 +1,5 @@
 import { ILoginformValue } from '../../schema/userSchema';
-import { IProject, IResponse, IUser } from '../../types/data';
+import { ICreateEpisode, IEpisode, IPaginatedResponse, IProject, IResponse, IUser } from '../../types/data';
 import { apiSlice } from '../apiSlice';
 
 const USER_URL = '/api/user';
@@ -13,7 +13,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body:data
             })
         }),
-        getProjects:builder.query<IResponse<{projects:IProject[], lastPage:number, totalPages:number}>,{page:number}>({
+        getProjects:builder.query<IPaginatedResponse<IProject>,{page:number}>({
             query:(data)=>`${USER_URL}/projects?limit=9&page=${data.page}`,
             providesTags: ["Projects"],
         }),
@@ -24,7 +24,21 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body:data,
             }),
             invalidatesTags: ['Projects'],
+        }),
+        addEpisode:builder.mutation<IResponse<IEpisode>,ICreateEpisode>({
+            query:(data)=>({
+                url:`${USER_URL}/episode`,
+                method:'POST',
+                body:data
+            }),
+            invalidatesTags:['Episodes']
+        }),
+        getEpisodes:builder.query<IPaginatedResponse<IEpisode>,{projectId:string,page:number}>({
+            query:(data)=>`${USER_URL}/project/${data.projectId}/episodes?limit=5&page=${data.page}`,
+            providesTags: ["Episodes"],
         })
+
+
     }),
 });
 
@@ -33,5 +47,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 export const {
    useLoginMutation,
     useGetProjectsQuery,
-    useCreateProjectMutation
+    useCreateProjectMutation,
+    useAddEpisodeMutation,
+    useGetEpisodesQuery
 } = authApiSlice;

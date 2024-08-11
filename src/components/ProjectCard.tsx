@@ -8,7 +8,7 @@ function ProjectCard({project, colorClass}:{project:IProject, colorClass:string}
   const icon = getChars(project.name)
   const navigate = useNavigate()
   return (
-    <div className="rounded-2xl border border-black/30 shadow-xl h-32 p-2 overflow-hidden  flex cursor-pointer" onClick={()=>navigate(`/project/${project.name}`)}>
+    <div className="rounded-2xl border border-black/30 shadow-xl h-32 p-2 overflow-hidden  flex cursor-pointer" onClick={()=>navigate(`/project/${project.id}`)}>
     <div className={`aspect-square h-full ${colorClass} rounded-xl flex justify-center items-center`}>
         <span className="text-3xl md:text-6xl font-bold text-white uppercase">{icon}</span>
 

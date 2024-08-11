@@ -2,16 +2,29 @@
 import { Home } from "lucide-react"
 import Breadcrumb from "../components/ui/Bredcrumb"
 import Table from "../components/ui/Table"
-import { useLocation } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { uploadOptions } from "../datas/datas"
 import Modal from "../components/ui/Modal"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import UploadEpisode from "../components/UploadEpisode"
+import { IUploadOptions } from "../types/data"
+import { useGetEpisodesQuery } from "../redux/feature/userApiSlice"
+import PaginationButtons from "../components/ui/PaginationButton"
 
 
 function UploadPodcase() {
-  const location = useLocation()
-  const [uploadOpt, setUploadOpt] = useState<{icon:string, title:string}|null>(null)
+  const { projectId } = useParams();
+  const [uploadOpt, setUploadOpt] = useState<IUploadOptions | null>(null)
+  const [page, setPage]= useState(1)
+
+  const { data } = useGetEpisodesQuery({ page, projectId: projectId || '' });
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!projectId) {
+      navigate('/')
+    }
+  }, [navigate, projectId])
 
   const showActionButtons = () => {
     return (
@@ -22,7 +35,7 @@ function UploadPodcase() {
     )
   }
 
-  
+
   return (
     <>
       <div className="p-10 ">
@@ -34,9 +47,10 @@ function UploadPodcase() {
           {
             uploadOptions.map(item => (
               <div
-              className="w-44 sm:w-52 border border-black/20 p-2 sm:p-3 shadow-lg rounded-xl flex items-center gap-2 mb-2 cursor-pointer"
-              onClick={()=>setUploadOpt(item)}
-               >
+                key={item.method}
+                className="w-44 sm:w-52 border border-black/20 p-2 sm:p-3 shadow-lg rounded-xl flex items-center gap-2 mb-2 cursor-pointer"
+                onClick={() => setUploadOpt(item)}
+              >
                 <div className="items-center flex justify-center w-10 md:w-20">
                   <img src={item.icon} width={50} height={50} alt="" />
                 </div>
@@ -56,18 +70,26 @@ function UploadPodcase() {
         <div className="w-full ">
           <Table
             {...{
-              columns: [{ Header: "Name", accessor: 'name' }, { Header: "Upload Date & Time", accessor: "upload_date" }, { Header: "Status", accessor: 'status' }, { Header: "Actions", accessor: 'name', Cell: showActionButtons }],
-              data: [{ name: 'krishnadas', status: "sucess", upload_date: '2024/05/02' }, { name: 'krishnadas', status: "sucess", upload_date: '2024/05/02' }],
+              columns: [{ Header: "Name", accessor: 'name' }, { Header: "Upload Date & Time", accessor: "updatedAt" }, { Header: "method", accessor: 'method' }, { Header: "Actions", accessor: 'name', Cell: showActionButtons }],
+              data: data?.data?.items || [],
 
             }}
           />
+          {
+            (data?.data?.totalPages || 0) > 1 &&
+            <PaginationButtons
+              totalPages={data?.data?.totalPages || 0}
+              currentPage={page}
+              setCurrentPage={setPage}
+            />
+          }
         </div>
 
 
       </div>
-      { uploadOpt &&
+      {uploadOpt &&
         <Modal>
-         <UploadEpisode {...uploadOpt} closeModal={()=>setUploadOpt(null)} />
+          <UploadEpisode {...uploadOpt} closeModal={() => setUploadOpt(null)} />
         </Modal>
       }
     </>
