@@ -20,9 +20,10 @@ function UploadPodcase() {
   const [deleteEpisode, setDeleteEpisode] = useState<IEpisode | null>(null)
 
   const { data, isLoading } = useGetEpisodesQuery({ page, projectId: projectId || '' });
+
   const navigate = useNavigate()
 
-  
+
   useEffect(() => {
     if (!projectId) {
       navigate('/')
@@ -32,7 +33,7 @@ function UploadPodcase() {
   const showActionButtons = (episode: IEpisode) => {
     return (
       <div className="  ">
-        <button onClick={()=>navigate(`edit/${episode.id}`)} className="border-r p-2 border rounded-l hover:bg-neutral-50">Edit</button>
+        <button onClick={() => navigate(`episode/${episode.id}`, { state: { episode } })} className="border-r p-2 border rounded-l hover:bg-neutral-50">Edit</button>
         <button onClick={() => setDeleteEpisode(episode)} className="text-red-500 p-2 border rounded-r hover:bg-neutral-50">Delete</button>
       </div>
     )
@@ -72,21 +73,21 @@ function UploadPodcase() {
 
         <div className="w-full ">
           {
-            isLoading || data?.data?.items?.length||0 >0 ?
-            <Table
-            {...{
-              isLoading,
-              columns: [{ Header: "Name", accessor: 'name' }, { Header: "Upload Date & Time", accessor: "updatedAt" }, { Header: "method", accessor: 'method' }, { Header: "Actions", accessor: 'name', Cell: showActionButtons }],
-              data: data?.data?.items || [],
+            isLoading || data?.data?.items?.length || 0 > 0 ?
+              <Table
+                {...{
+                  isLoading,
+                  columns: [{ Header: "Name", accessor: 'name' }, { Header: "Upload Date & Time", accessor: "updatedAt" }, { Header: "method", accessor: 'method' }, { Header: "Actions", accessor: 'name', Cell: showActionButtons }],
+                  data: data?.data?.items || [],
 
-            }}
-          />
-          :
-          <div className="border-2 border-primary border-dashed p-5 rounded-xl">
-            <h2 className="text-xl font-semibold text-primary text-center">Please add Episodes</h2>
-          </div>
+                }}
+              />
+              :
+              <div className="border-2 border-primary border-dashed p-5 rounded-xl">
+                <h2 className="text-xl font-semibold text-primary text-center">Please add Episodes</h2>
+              </div>
           }
-          
+
           {
             (data?.data?.totalPages || 0) > 1 &&
             <PaginationButtons
@@ -96,19 +97,16 @@ function UploadPodcase() {
             />
           }
         </div>
-
-
       </div>
       {uploadOpt &&
         <Modal>
           <UploadEpisode {...uploadOpt} closeModal={() => setUploadOpt(null)} />
         </Modal>
       }
-
       {
         deleteEpisode &&
         <Modal className="max-w-md ">
-          <DeleteEpisode {...{closeModal:()=>setDeleteEpisode(null), episode:deleteEpisode}} />
+          <DeleteEpisode {...{ closeModal: () => setDeleteEpisode(null), episode: deleteEpisode }} />
         </Modal>
       }
     </>

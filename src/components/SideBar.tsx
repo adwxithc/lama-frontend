@@ -62,7 +62,7 @@ const SideBarItem = ({ name, link, count,selected }: { name: string, link: strin
    
     
     return (
-        <div className={`transition-colors duration-200 rounded-full flex mb-2 gap-2  p-2.5 text-black/80 font-semibold text-sm cursor-pointer ${ selected===link&&'bg-purple-700 '}`} onClick={() => navigate(link)}>
+        <div className={`transition-colors duration-200 rounded-full flex mb-2 gap-2  p-2.5 text-black/80 font-semibold text-sm cursor-pointer ${ selected===link&&'bg-purple-700 text-white'}`} onClick={() => navigate(link)}>
             <span className="flex items-center justify-center h-6 w-6 text-xs rounded-full bg-neutral-300 text-black/80">{count}</span>
             {name}
         </div>

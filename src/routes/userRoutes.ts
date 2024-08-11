@@ -5,6 +5,7 @@ import LandingPage from "../pages/LandingPage";
 import SingleProject from "../components/layout/ProjectLayout";
 import UploadPodcase from "../pages/UploadPodcast";
 import EditEpisode from "../pages/EditEpisode";
+import WidgetConfiguration from "../pages/WidgetConfiguration";
 
 const userRoutes = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ const userRoutes = createBrowserRouter([
                                 Component:UploadPodcase
                             },
                             {
-                                path:'edit/:episodeId',
+                                path:'episode/:episodeId',
                                 Component:EditEpisode
         
                             },
@@ -36,7 +37,8 @@ const userRoutes = createBrowserRouter([
                         ]
                     },
                     {
-                        path:'widget-config'
+                        path:'widget-config',
+                        Component:WidgetConfiguration
                     }
                 ]
                 

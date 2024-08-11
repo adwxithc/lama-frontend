@@ -15,6 +15,7 @@ interface ITabelProps<T> {
 }
 
 function Table<T,>({ columns, data, isLoading, RowAction }: ITabelProps<T>) {
+    
     return (
         <div className="rounded-xl shadow-md   border-2  overflow-x-auto ">
             <table className="w-full text-black/80 min-w-[600px]">

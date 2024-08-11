@@ -11,7 +11,7 @@ const buttonVarients = cva(
             varient: {
                 default: 'bg-gray-200 text-black/50 ',
                 secondary:'border shadow-md  border-black/30',
-               
+               danger:'rounded text-red-500 border-2  border-red-500',
                 dark:"bg-dark text-white rounded",
                 primary:"bg-primary text-white rounded-md"
                 
@@ -19,7 +19,7 @@ const buttonVarients = cva(
             size: {
                 default: "h-16 px-8",
                 sm: "px-3 py-1",
-                md:  "px-4 py-1.5 text-base",
+                md:  "h-10 px-4 py-1.5 text-base",
                 lg:  "px-5 py-3 text-2xl"
 
             },
