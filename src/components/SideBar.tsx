@@ -16,7 +16,7 @@ function SideBar({ expanded }: { expanded: boolean }) {
                     <div className="border-b border-black/20">
                    
                     
-                    <SideBarItem {...{ name: "project", link: "upload", count: 2 }} />
+                    <SideBarItem {...{ name: "project", link: "", count: 2 }} />
                     <SideBarItem {...{ name: "Widget Configurations", link: "widget-config", count: 3 }} />
                    
                     </div>
@@ -44,8 +44,8 @@ function SideBar({ expanded }: { expanded: boolean }) {
 const SideBarItem = ({ name, link, count }: { name: string, link: string, count: number }) => {
     const navigate = useNavigate()
     const location = useLocation();
-    const selected = location.pathname.split('/')[3]
-
+    const selected = location.pathname.split('/')[3] ||''
+    
     
  
    

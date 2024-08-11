@@ -13,9 +13,17 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body:data
             })
         }),
-        getProjects:builder.query<IResponse<{projects:IProject[], lastPage:number}>,{page:number}>({
-            query:(data)=>`${USER_URL}/projects?limit=5&page=${data.page}`,
+        getProjects:builder.query<IResponse<{projects:IProject[], lastPage:number, totalPages:number}>,{page:number}>({
+            query:(data)=>`${USER_URL}/projects?limit=9&page=${data.page}`,
             providesTags: ["Projects"],
+        }),
+        createProject:builder.mutation<IResponse<IProject>,{name:string}>({
+            query:(data)=>({
+                url:`${USER_URL}/project`,
+                method: 'POST',
+                body:data,
+            }),
+            invalidatesTags: ['Projects'],
         })
     }),
 });
@@ -24,5 +32,6 @@ export const authApiSlice = apiSlice.injectEndpoints({
 
 export const {
    useLoginMutation,
-    useGetProjectsQuery
+    useGetProjectsQuery,
+    useCreateProjectMutation
 } = authApiSlice;

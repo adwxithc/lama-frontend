@@ -44,7 +44,7 @@ function Login() {
             </div>
             <div className='flex justify-end gap-2'>
 
-                <Button type='submit' varient={'primary'} size={'md'}> {isLoading ? <MoonLoader size={20} color='white' /> : 'Login'}  </Button>
+                <Button disabled={isLoading} type='submit' varient={'primary'} size={'md'}> {isLoading ? <MoonLoader size={20} color='white' /> : 'Login'}  </Button>
             </div>
 
         </form>

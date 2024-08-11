@@ -13,6 +13,16 @@ export interface IProject{
     updatedAt?:string
 }
 
+export interface IEpisode{
+    id:string,
+    projectId:string,
+    name:string,
+    description:string,
+    createdAt:string,
+    updatedAt:string,
+    method: 'youtube'|'spotify'|'RSS'
+}
+
 export interface IResponse<T>{
     success:boolean,
     data?:T,

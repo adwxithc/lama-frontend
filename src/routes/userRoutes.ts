@@ -1,7 +1,7 @@
 
 import { createBrowserRouter } from "react-router-dom";
 import UserLayout from "../components/layout/UserLayout";
-import LandingPage from "../pages/landingPage/LandingPage";
+import LandingPage from "../pages/LandingPage";
 import SingleProject from "../components/layout/ProjectLayout";
 import EditProject from "../pages/EditProject";
 import UploadPodcase from "../pages/UploadPodcast";
@@ -20,7 +20,7 @@ const userRoutes = createBrowserRouter([
                 Component:SingleProject,
                 children:[
                     {
-                        path:'upload',
+                        path:'',
                         children:[
                             {
                                 index:true,
