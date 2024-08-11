@@ -31,12 +31,20 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 method:'POST',
                 body:data
             }),
-            invalidatesTags:['Episodes']
+            invalidatesTags:['Episodes', 'Projects']
         }),
         getEpisodes:builder.query<IPaginatedResponse<IEpisode>,{projectId:string,page:number}>({
             query:(data)=>`${USER_URL}/project/${data.projectId}/episodes?limit=5&page=${data.page}`,
             providesTags: ["Episodes"],
+        }),
+        deleteEpisode:builder.mutation<IResponse<IEpisode>,{projectId:string,episodeId:string}>({
+            query:(data)=>({
+                url:`${USER_URL}/project/${data.projectId}/episode/${data.episodeId}/delete`,
+                method:'PATCH'
+            }),
+            invalidatesTags:['Episodes', 'Projects']
         })
+
 
 
     }),
@@ -49,5 +57,6 @@ export const {
     useGetProjectsQuery,
     useCreateProjectMutation,
     useAddEpisodeMutation,
-    useGetEpisodesQuery
+    useGetEpisodesQuery,
+    useDeleteEpisodeMutation
 } = authApiSlice;

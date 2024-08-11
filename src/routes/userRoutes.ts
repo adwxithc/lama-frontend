@@ -3,8 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import UserLayout from "../components/layout/UserLayout";
 import LandingPage from "../pages/LandingPage";
 import SingleProject from "../components/layout/ProjectLayout";
-import EditProject from "../pages/EditProject";
 import UploadPodcase from "../pages/UploadPodcast";
+import EditEpisode from "../pages/EditEpisode";
 
 const userRoutes = createBrowserRouter([
     {
@@ -27,8 +27,8 @@ const userRoutes = createBrowserRouter([
                                 Component:UploadPodcase
                             },
                             {
-                                path:'edit',
-                                Component:EditProject
+                                path:'edit/:episodeId',
+                                Component:EditEpisode
         
                             },
         

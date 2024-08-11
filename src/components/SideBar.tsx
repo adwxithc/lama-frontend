@@ -1,8 +1,20 @@
 import { Settings } from "lucide-react"
 import Button from "./ui/Button"
 import { useLocation, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
 
 function SideBar({ expanded }: { expanded: boolean }) {
+    const [selected, setSelected] = useState('')
+    const location = useLocation();
+    const loc = location.pathname.split('/')[3] ||''
+
+    useEffect(()=>{
+        switch(loc){
+            case 'widget-config':setSelected('widget-config');
+                                    break;
+            default: setSelected('')
+        }
+    },[loc])
     
     return (
         <div className={`h-screen bg-purple-100 flex flex-col  sm:rounded-r-2xl transition-all duration-400  overflow-hidden ${expanded ? 'w-full  sm:w-96 px-5 ' : 'w-0'}`}>
@@ -16,8 +28,8 @@ function SideBar({ expanded }: { expanded: boolean }) {
                     <div className="border-b border-black/20">
                    
                     
-                    <SideBarItem {...{ name: "project", link: "", count: 2 }} />
-                    <SideBarItem {...{ name: "Widget Configurations", link: "widget-config", count: 3 }} />
+                    <SideBarItem {...{ name: "project", link: "", count: 2,selected }} />
+                    <SideBarItem {...{ name: "Widget Configurations", link: "widget-config", count: 3,selected }} />
                    
                     </div>
                     
@@ -41,10 +53,9 @@ function SideBar({ expanded }: { expanded: boolean }) {
     )
 }
 
-const SideBarItem = ({ name, link, count }: { name: string, link: string, count: number }) => {
+const SideBarItem = ({ name, link, count,selected }: { name: string, link: string, count: number, selected:string }) => {
     const navigate = useNavigate()
-    const location = useLocation();
-    const selected = location.pathname.split('/')[3] ||''
+    
     
     
  
