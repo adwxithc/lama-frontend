@@ -9,18 +9,19 @@ const Avatar = React.forwardRef<HTMLImageElement, ImgHTMLAttributes<HTMLImageEle
             <>
                 {
                     src ?
+                    
                     <img 
-                    className={cn( 'h-20 w-20 rounded-full',className)}
+                    className={cn( 'w-24 h-24 rounded-full object-cover',className)}
                     src={src} 
                     alt={src}
                     ref={ref}
                     {...props} // Spread the rest of the props here
                 />
                 :
-                <span 
-                className={cn('h-20 w-20 rounded-full bg-gray-300/90',className)}
+                <div 
+                className={cn('h-20 w-20  rounded-full bg-gray-300/90',className)}
                 ref={ref}
-                ></span>
+                ></div>
                 }
                
             </>

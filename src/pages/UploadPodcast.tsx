@@ -13,7 +13,7 @@ import PaginationButtons from "../components/ui/PaginationButton"
 import DeleteEpisode from "../components/DeleteEpisode"
 
 
-function UploadPodcase() {
+function UploadPodcast() {
   const { projectId } = useParams();
   const [uploadOpt, setUploadOpt] = useState<IUploadOptions | null>(null)
   const [page, setPage] = useState(1)
@@ -113,4 +113,4 @@ function UploadPodcase() {
   )
 }
 
-export default UploadPodcase
+export default UploadPodcast

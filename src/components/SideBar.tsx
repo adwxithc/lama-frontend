@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 function SideBar({ expanded }: { expanded: boolean }) {
     const [selected, setSelected] = useState('')
+    const navigate = useNavigate()
     const location = useLocation();
     const loc = location.pathname.split('/')[3] ||''
 
@@ -12,6 +13,8 @@ function SideBar({ expanded }: { expanded: boolean }) {
         switch(loc){
             case 'widget-config':setSelected('widget-config');
                                     break;
+            case 'account':setSelected('account')
+                        break;
             default: setSelected('')
         }
     },[loc])
@@ -38,11 +41,11 @@ function SideBar({ expanded }: { expanded: boolean }) {
 
                 </div>
                 <div className="border-t py-2 border-black/30 ">
-                    <Button>
-                        <span className="bg-neutral-300/60 text-neutral-900/50 p-2 rounded-full">
+                    <Button onClick={()=>navigate('account')} className={`text-neutral-900/ w-full justify-start p-1 ${selected==='account' && 'bg-primary text-white'}`}>
+                        <span className="bg-neutral-300/60  p-2 rounded-full">
                             <Settings size={20} />
                         </span>
-                        <span className="ml-2 text-black/80">Settings</span>
+                        <span className="ml-2 ">Settings</span>
                     </Button>
 
                 </div>

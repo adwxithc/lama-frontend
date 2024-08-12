@@ -4,6 +4,7 @@ import {  IUser } from "../../types/data";
 export interface IInitialUserState{
     userData:IUser |null,
     isAuth:boolean,
+    
 } 
 
 

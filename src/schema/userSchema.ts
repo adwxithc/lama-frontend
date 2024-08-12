@@ -11,3 +11,10 @@ export const loginSchema = z.object({
     .min(3, 'Name must be at least 3 characters long')
     .max(30, 'Project name must be at most 30 characters long')
 });
+
+
+export const profileSchema =z.object({
+    name: z.string() .trim()
+    .min(3, 'Name must be at least 3 characters long')
+    .max(30, 'Project name must be at most 30 characters long')
+})

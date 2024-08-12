@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { MoonLoader, RingLoader } from "react-spinners"
 import { iconPositions, iconSizeOptions } from "../datas/datas"
 import toast from "react-hot-toast"
+import { dataURLtoFile } from "../utils/dataURLToFile"
 
 
 function WidgetDisplayConfig() {
@@ -42,7 +43,12 @@ function WidgetDisplayConfig() {
     const { errors } = formState
 
     useEffect(()=>{
-        console.log(data?.data);
+
+        if(data?.data?.image){
+            const file = dataURLtoFile(data?.data?.image,'image')
+            setFile(file||null)
+            setImageUrl(data.data.image)
+        }
         
         reset(data?.data||{})
         setToggle(Boolean(data?.data?.showSource))
@@ -86,7 +92,7 @@ function WidgetDisplayConfig() {
     }
 
     return (
-        <div>
+        <div className="relative">
         <form className="text-black/80 p-3" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid  gap-y-4 gap-x-16 md:grid-cols-2 font-bold text-sm mb-5">
                 <div>

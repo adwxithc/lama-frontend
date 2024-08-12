@@ -93,6 +93,13 @@ export const authApiSlice = apiSlice.injectEndpoints({
         getWidget: builder.query<IResponse<IWidget>,{projectId:string}>({
             query: (data) =>`${USER_URL}/project/${data.projectId}/widget-config`,
             providesTags: ['Widget'],
+        }),
+        updateUser:builder.mutation<IResponse<IUser>,FormData>({
+            query: (data) => ({
+                url: `${USER_URL}/account`,
+                body: data,
+                method: 'PATCH',
+            }),
         })
     }),
 });
@@ -107,5 +114,6 @@ export const {
     useEditEpisodeMutation,
     useUpdateGeneralWidgetMutation,
     useGetWidgetQuery,
-    useUpdateDisplayWidgetMutation
+    useUpdateDisplayWidgetMutation,
+    useUpdateUserMutation
 } = authApiSlice;

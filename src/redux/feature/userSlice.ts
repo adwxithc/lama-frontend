@@ -10,14 +10,9 @@ const userSlice = createSlice({
             state.isAuth=true
             localStorage.setItem('userData',JSON.stringify(data))
         },
-        removeCridentials: (state) => {
-            state.isAuth = false;
-            state.userData = null;
-            localStorage.removeItem('userData')
-        },
       
     }
 })
 
-export const {removeCridentials,setCridentials} =userSlice.actions
+export const {setCridentials} =userSlice.actions
 export default userSlice.reducer

@@ -1,12 +1,14 @@
 
 import { createBrowserRouter } from "react-router-dom";
-import UserLayout from "../components/layout/UserLayout";
-import LandingPage from "../pages/LandingPage";
-import SingleProject from "../components/layout/ProjectLayout";
-import UploadPodcase from "../pages/UploadPodcast";
-import EditEpisode from "../pages/EditEpisode";
-import WidgetConfiguration from "../pages/WidgetConfiguration";
+import { lazy } from "react";
 
+const LandingPage = lazy(() => import('../pages/LandingPage'));
+const SingleProject = lazy(() => import('../components/layout/ProjectLayout'));
+const UploadPodcast = lazy(() => import('../pages/UploadPodcast'));
+const EditEpisode = lazy(() => import('../pages/EditEpisode'));
+const WidgetConfiguration = lazy(() => import('../pages/WidgetConfiguration'));
+const Account = lazy(() => import('../pages/Account'));
+const UserLayout = lazy(()=>import('../components/layout/UserLayout'))
 const userRoutes = createBrowserRouter([
     {
         path: '/',
@@ -25,24 +27,29 @@ const userRoutes = createBrowserRouter([
                         children:[
                             {
                                 index:true,
-                                Component:UploadPodcase
+                                Component:UploadPodcast
                             },
                             {
                                 path:'episode/:episodeId',
                                 Component:EditEpisode
         
                             },
-        
+                           
                             
                         ]
                     },
                     {
                         path:'widget-config',
                         Component:WidgetConfiguration
+                    },
+                    {
+                        path:'account',
+                        Component:Account
                     }
                 ]
                 
-            }
+            },
+           
         ]
     },
     
