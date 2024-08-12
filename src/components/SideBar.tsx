@@ -1,9 +1,9 @@
-import { Settings } from "lucide-react"
+import { ChevronLeft, Settings } from "lucide-react"
 import Button from "./ui/Button"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 
-function SideBar({ expanded }: { expanded: boolean }) {
+function SideBar({ expanded,closeSidebar }: { expanded: boolean,closeSidebar:()=>void }) {
     const [selected, setSelected] = useState('')
     const navigate = useNavigate()
     const location = useLocation();
@@ -21,9 +21,12 @@ function SideBar({ expanded }: { expanded: boolean }) {
     
     return (
         <div className={`h-screen bg-purple-100 flex flex-col  sm:rounded-r-2xl transition-all duration-400  overflow-hidden ${expanded ? 'w-full  sm:w-96 px-5 ' : 'w-0'}`}>
-            <div className="flex items-center mb-5 mt-5 ">
+           
+            
+            <div className="flex justify-between items-center mb-5 mt-5 ">
                 <img width={'150px'} src="/logo.png" alt="" />
-        
+                <Button className="inline-block sm:hidden" onClick={closeSidebar}><ChevronLeft color="#111" /></Button>
+                
             </div>
           
                 <div className="flex-1">
