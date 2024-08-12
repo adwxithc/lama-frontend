@@ -15,8 +15,10 @@ Key Features:
 1. [Installation](#installation)
 2. [Usage](#usage)
 3. [Features](#features)
-4. [Contributing](#contributing)
-5. [Contact](#contact)
+4. [Sample .env File](#sample-env-file)
+5. [Live Link](#live-link)
+6. [Contributing](#contributing)
+7. [Contact](#contact)
 
 ## Installation
 
@@ -40,7 +42,15 @@ To set up this project locally, follow these steps:
    npm install
    ```
 
-4. **Start the development server:**
+4. **Create a `.env` file:**
+
+   Copy the contents of the sample `.env` file below to a new `.env` file in the root of the project:
+
+   ```env
+   VITE_BACKEND_URL=http://localhost:5000
+   ```
+
+5. **Start the development server:**
 
    ```bash
    npm run dev
@@ -71,6 +81,18 @@ Once the application is running, you can:
 - **Responsive Design:** Adapts to different screen sizes for an optimal experience on desktop and mobile devices.
 - **User-Friendly Interface:** Simplified design for ease of use in managing podcast content.
 
+## Sample .env File
+
+To ensure proper configuration, create a `.env` file in the root directory of your project with the following content:
+
+```env
+VITE_BACKEND_URL=http://localhost:5000
+```
+
+## Live Link
+
+You can view the live version of the application here: [Live Demo](https://lama.easycart.website)
+
 ## Contributing
 
 Contributions are welcome! To contribute:
@@ -89,4 +111,3 @@ For questions or feedback, please contact:
 Email: [adwaithjanardhanan0@gmail.com](mailto:adwaithjanardhanan0@gmail.com)  
 LinkedIn: [https://www.linkedin.com/in/adwaith-c-25b5a0218/](https://www.linkedin.com/in/adwaith-c-25b5a0218/)  
 GitHub: [https://github.com/adwxithc](https://github.com/adwxithc)
-
