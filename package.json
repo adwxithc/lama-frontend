@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start":"vite",
+    "start": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.7",
     "class-variance-authority": "^0.7.0",
+    "dotenv": "^16.4.5",
     "framer-motion": "^11.3.24",
     "lucide-react": "^0.426.0",
     "moment": "^2.30.1",
