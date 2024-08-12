@@ -42,7 +42,7 @@ const TabMenu = ({tabs}:TabMenuProps) => {
           <div
             key={tab.id}
             className={`transition-opacity duration-300 absolute inset-0 ${
-              activeTab === tab.id ? 'opacity-100' : 'opacity-0'
+              activeTab === tab.id ? 'block' : 'hidden'
             }`}
           >
             {tab.content}

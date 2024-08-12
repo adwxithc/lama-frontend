@@ -9,12 +9,16 @@ import { useMemo } from "react"
 
 
 function WidgetConfiguration() {
+    const {projectId=''} = useParams()
+
+
+
     const tabs =useMemo(()=>{
         return[
             {
                 id:1,
                 label:'General',
-                content:<WidgetGeneralConfig />
+                content:<WidgetGeneralConfig  />
             },
             {
                 id:2,
@@ -23,16 +27,18 @@ function WidgetConfiguration() {
             }
         ]
     },[])
-    const { projectId = '', episodeId = '' } = useParams()
+
   return (
     <div className="p-10">
        <div className="text-xl mb-8">
           <Breadcrumb paths={[{ label: <Home size={25} />, link: '/' }, { label: 'Project', link:`/project/${projectId}` },{label:'Widget configuration', link:`/project/${projectId}/widget-config`}]} />
         </div>
         <h1 className="text-primary text-2xl font-bold">Configuration</h1>
+        
         <TabMenu
         tabs={tabs}
          />
+         
          
     </div>
   )

@@ -1,4 +1,5 @@
 import { ILoginformValue } from '../../schema/userSchema';
+import { IGeneralConfigForm } from '../../schema/widgetSchema';
 import {
     ICreateEpisode,
     IEpisode,
@@ -6,6 +7,7 @@ import {
     IProject,
     IResponse,
     IUser,
+    IWidget,
 } from '../../types/data';
 import { apiSlice } from '../apiSlice';
 
@@ -72,6 +74,26 @@ export const authApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Episodes'],
         }),
+        updateGeneralWidget: builder.mutation<IResponse<IWidget>,{projectId:string}&IGeneralConfigForm>({
+            query: (data) => ({
+                url: `${USER_URL}/project/${data.projectId}/widget-config/general`,
+                body: data,
+                method: 'PATCH',
+            }),
+            invalidatesTags: ['Widget'],
+        }),
+        updateDisplayWidget: builder.mutation<IResponse<IWidget>,{projectId:string,data:FormData}>({
+            query: (data) => ({
+                url: `${USER_URL}/project/${data.projectId}/widget-config/display`,
+                body: data.data,
+                method: 'PATCH',
+            }),
+            invalidatesTags: ['Widget'],
+        }),
+        getWidget: builder.query<IResponse<IWidget>,{projectId:string}>({
+            query: (data) =>`${USER_URL}/project/${data.projectId}/widget-config`,
+            providesTags: ['Widget'],
+        })
     }),
 });
 
@@ -82,5 +104,8 @@ export const {
     useAddEpisodeMutation,
     useGetEpisodesQuery,
     useDeleteEpisodeMutation,
-    useEditEpisodeMutation
+    useEditEpisodeMutation,
+    useUpdateGeneralWidgetMutation,
+    useGetWidgetQuery,
+    useUpdateDisplayWidgetMutation
 } = authApiSlice;

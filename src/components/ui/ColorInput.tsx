@@ -1,12 +1,13 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { ChangeEvent, Dispatch } from 'react';
 import { cn } from '../../utils/style-utils';
 export interface ColorInputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {
-    error?: string;
+    color:string,
+    setColor:Dispatch<React.SetStateAction<string>>
 }
 const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>(
-    ({ className, error, ...props }, ref) => {
-        const [color, setColor] = useState<string>('#ffffff'); // Default color is white
+    ({ className,color, setColor , ...props }, ref) => {
+        
 
         const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
             setColor(event.target.value);
@@ -16,6 +17,7 @@ const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>(
             <>
                 <div className={cn("flex items-center space-x-2",className)}>
                     <input
+                    disabled={true}
                         {...props}
                         ref={ref}
                         type="text"
@@ -32,7 +34,7 @@ const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>(
                         style={{ backgroundColor: color }}
                     />
                 </div>
-                <p className='text-red-600 ml-1 mt-1  text-xs text-left'>{error}</p>
+                
             </>
         );
     }
