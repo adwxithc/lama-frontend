@@ -22,8 +22,8 @@ function SideBar({ expanded }: { expanded: boolean }) {
     return (
         <div className={`h-screen bg-purple-100 flex flex-col  sm:rounded-r-2xl transition-all duration-400  overflow-hidden ${expanded ? 'w-full  sm:w-96 px-5 ' : 'w-0'}`}>
             <div className="flex items-center mb-5 mt-5 ">
-                <img className="w-10 " src="/src/assets/logo.png" alt="" />
-                <img className="h-6 ml-1" src="/src/assets/LAMA.png" alt="" />
+                <img width={'150px'} src="/logo.png" alt="" />
+        
             </div>
           
                 <div className="flex-1">

@@ -41,7 +41,7 @@ function LandingPage() {
                         projects.length === 0 ?
                             <div className="flex flex-col justify-center items-center ">
                                 <h1 className="text-primary mb-5 font-bold text-2xl text-center md:text-5xl">Create a New Project</h1>
-                                <img className="mb-5" width={350} src="/src/assets/landingPage.png" alt="" />
+                                <img className="mb-5" width={350} src="/landingPage.png" alt="" />
                                 <p className="max-w-3xl text-center mb-3 text-black/50 font-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</p>
                                 <CreateNewProject {...{refetch}} />
                             </div>
