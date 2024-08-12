@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 import dotenv from 'dotenv'
 dotenv.config();
 
-// Access the environment variable
-const backendUrl = process.env.VITE_BACKEND_URL;
+// // Access the environment variable
+// const backendUrl = process.env.VITE_BACKEND_URL;
 
 
 
@@ -14,7 +14,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: backendUrl,
+        // target: backendUrl,
         changeOrigin: true,
         secure: true
       }
