@@ -55,7 +55,7 @@ function LandingPage() {
                                 </div>
                                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-14">
                                     {
-                                        isLoading?
+                                        !isLoading?
                                         Array.from({ length: 6 }, (_, index) => (
                                             <SkeletonCard key={index} className="mb-4" />
                                           ))
