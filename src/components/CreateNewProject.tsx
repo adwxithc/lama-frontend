@@ -62,7 +62,7 @@ function CreateNewProject({refetch}:{refetch:() => void}) {
                             <Input className='mt-1' {...register('name')} error={errors.name?.message} id='name' placeholder='Type here' />
                         </div>
                         <div className='flex justify-end gap-2'>
-                            <Button type='button' className='text-red-500' onClick={() => setOpen(false)}>Cancel</Button>
+                            <Button disabled={isLoading} type='button' className='text-red-500' onClick={() => setOpen(false)}>Cancel</Button>
                             <Button disabled={isLoading} type='submit' varient={'primary'} size={'md'}>{isLoading?<MoonLoader size={20} color='white' />:'Create'}</Button>
                         </div>
 

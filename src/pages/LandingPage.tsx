@@ -7,6 +7,7 @@ import { Fragment, useEffect, useState } from "react"
 import { IProject } from "../types/data"
 import PaginationButtons from "../components/ui/PaginationButton"
 import ProjectCard from "../components/ProjectCard"
+import SkeletonCard from "../components/Skeleton/SkeletonCard"
 
 const colorClasses = ['bg-yellow-500', 'bg-purple-500', 'bg-blue-600', 'bg-green-600','bg-yellow-500', 'bg-purple-500', 'bg-blue-600', 'bg-green-600','bg-yellow-500']
 
@@ -20,7 +21,7 @@ function LandingPage() {
 
     
 
-    const { data,refetch } = useGetProjectsQuery({page})
+    const { data,refetch,isLoading } = useGetProjectsQuery({page})
 
     useEffect(()=>{
        
@@ -37,8 +38,9 @@ function LandingPage() {
 
                         <Button varient={'secondary'} size={"sm"} ><House size={20} /> <span className="ml-1">Back to Home</span></Button>
                     </div>
+                   
                     {
-                        projects.length === 0 ?
+                       !isLoading && projects.length === 0 ?
                             <div className="flex flex-col justify-center items-center ">
                                 <h1 className="text-primary mb-5 font-bold text-2xl text-center md:text-5xl">Create a New Project</h1>
                                 <img className="mb-5" width={350} src="/landingPage.png" alt="" />
@@ -53,6 +55,12 @@ function LandingPage() {
                                 </div>
                                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-14">
                                     {
+                                        isLoading?
+                                        Array.from({ length: 6 }, (_, index) => (
+                                            <SkeletonCard key={index} className="mb-4" />
+                                          ))
+                                        
+                                        :
                                         projects.map((project, i) => (<Fragment key={project.id}><ProjectCard {...{project,colorClass:colorClasses[i]}} /></Fragment>))
                                     }
                                 </div>
