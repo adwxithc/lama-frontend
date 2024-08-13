@@ -45,7 +45,7 @@ function EditEpisode() {
     }
     return (
         <div className="p-10">
-            <div className="text-xl mb-8">
+            <div className="text-xs sm:text-xl mb-8">
                 <Breadcrumb paths={[{ label: <Home size={25} />, link: '/' }, { label: 'Project', link: `/project/${projectId}` }, { label: 'Edit', link: `/project/${projectId}/edit/${episodeId}` }]} />
             </div>
             <div className="flex flex-col sm:flex-row gap-2 justify-between mb-2">

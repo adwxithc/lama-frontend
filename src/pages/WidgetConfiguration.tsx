@@ -30,7 +30,7 @@ function WidgetConfiguration() {
 
   return (
     <div className="p-10">
-       <div className="text-xl mb-8">
+       <div className="text-xs sm:text-xl  mb-8">
           <Breadcrumb paths={[{ label: <Home size={25} />, link: '/' }, { label: 'Project', link:`/project/${projectId}` },{label:'Widget configuration', link:`/project/${projectId}/widget-config`}]} />
         </div>
         <h1 className="text-primary text-2xl font-bold">Configuration</h1>

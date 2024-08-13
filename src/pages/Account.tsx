@@ -58,9 +58,8 @@ function Account() {
             dispatch(setCridentials(user.data))
             toast.success('account updated')
             setImageUrl(user.data?.profile)
-        } catch(er) {
-            console.log(er);
-            
+        } catch {
+          
             toast.error('something went wrong')
         }
        
@@ -68,7 +67,7 @@ function Account() {
 
     return (
         <form className="p-10" onSubmit={handleSubmit(onSave)}>
-            <div className="text-xl mb-8">
+            <div className="text-xs sm:text-xl mb-8">
                 <Breadcrumb paths={[{ label: <Home size={25} />, link: '/' }, { label: 'Account', link: `/project/${projectId}/account` }]} />
             </div>
             

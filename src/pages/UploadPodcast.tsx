@@ -43,7 +43,7 @@ function UploadPodcast() {
   return (
     <>
       <div className="p-10 ">
-        <div className="text-xl mb-8">
+        <div className="text-xs sm:text-xl mb-8">
           <Breadcrumb paths={[{ label: <Home size={25} />, link: '/' }, { label: 'Project', link: location.pathname }]} />
         </div>
 
